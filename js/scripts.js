@@ -41,7 +41,10 @@ $(document).ready(function(){
 			}			
 			// Update the HMLT inside of the table body
 			$('#stock-ticker-body').append(newRow);
+			$('#stock-table').DataTable();
 		});		
+	}else{
+		$('#stock-ticker-body').append("You have not searched for any yet");
 	}
 	// console.log(userStockSavedIfAny);
 
@@ -74,6 +77,7 @@ $(document).ready(function(){
 			// Update the HMLT inside of the table body
 			$('#stock-ticker-body').append(newRow);
 		});
+		$('#stock-table').DataTable();
 	})
 	console.log("I'm the last line... but I'm not last, because JS is async!")
 
@@ -84,10 +88,12 @@ $(document).ready(function(){
 		if(stockInfo.Ask == null){
 			stockInfo.Ask = "Not Available for this stock";
 		}
-		if(stockInfo.Change.indexOf('+') > -1){
-			var classChange = "success";
-		}else{
-			var classChange = "danger";
+		if(stockInfo.Change !== null){
+			if(stockInfo.Change.indexOf('+') > -1){
+				var classChange = "success";
+			}else{
+				var classChange = "danger";
+			}			
 		}
 
 		newHTML += '<tr>';
